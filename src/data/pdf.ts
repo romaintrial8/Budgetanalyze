@@ -8,8 +8,38 @@ import type { RawItem } from '../domain/importers';
 type Pdfjs = any;
 let lib: Promise<Pdfjs> | null = null;
 
+/**
+ * Safari (iPhone compris) ne sait pas parcourir un ReadableStream avec « for await », ce que pdf.js utilise pour
+ * extraire le texte (erreur « undefined is not a function »). On ajoute ce parcours s'il manque, avant de charger pdf.js.
+ */
+export function polyfillStreamIteration(): void {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const RS = (globalThis as any).ReadableStream;
+  if (!RS || typeof RS.prototype[Symbol.asyncIterator] === 'function') return;
+  const values = function (this: ReadableStream, opts: { preventCancel?: boolean } = {}) {
+    const reader = this.getReader();
+    return {
+      async next() {
+        try {
+          const r = await reader.read();
+          if (r.done) reader.releaseLock();
+          return r;
+        } catch (e) { reader.releaseLock(); throw e; }
+      },
+      async return(value?: unknown) {
+        if (!opts.preventCancel) { const p = reader.cancel(value); reader.releaseLock(); await p; } else reader.releaseLock();
+        return { done: true, value };
+      },
+      [Symbol.asyncIterator]() { return this; },
+    };
+  };
+  if (typeof RS.prototype.values !== 'function') Object.defineProperty(RS.prototype, 'values', { value: values, writable: true, configurable: true });
+  Object.defineProperty(RS.prototype, Symbol.asyncIterator, { value: RS.prototype.values, writable: true, configurable: true });
+}
+
 function load(): Promise<Pdfjs> {
   if (!lib) {
+    polyfillStreamIteration();
     const base = new URL('./', location.href).href;
     const url = base + 'pdfjs/pdf.min.mjs';
     lib = import(/* @vite-ignore */ url).then((m: Pdfjs) => {
@@ -40,12 +70,26 @@ export async function extractItems(bytes: Uint8Array, pdfjs?: Pdfjs): Promise<Ra
   const items: RawItem[] = [];
   for (let p = 1; p <= doc.numPages; p++) {
     const page = await doc.getPage(p);
-    const tc = await page.getTextContent();
-    for (const it of tc.items as { str?: string; transform: number[]; width: number }[]) {
+    for (const it of await textItems(page)) {
       if (!it.str || !it.str.trim()) continue;
       items.push({ page: p, x: it.transform[4], y: it.transform[5], w: it.width, s: it.str });
     }
   }
   await doc.destroy?.();
   return items;
+}
+
+type TextItem = { str?: string; transform: number[]; width: number };
+
+/** Texte d'une page lu morceau par morceau (lecteur explicite : ne dépend pas de « for await », absent de Safari). */
+async function textItems(page: Pdfjs): Promise<TextItem[]> {
+  if (typeof page.streamTextContent !== 'function') return (await page.getTextContent()).items as TextItem[];
+  const reader = page.streamTextContent().getReader();
+  const out: TextItem[] = [];
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    out.push(...(value.items as TextItem[]));
+  }
+  return out;
 }

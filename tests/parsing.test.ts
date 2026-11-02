@@ -153,3 +153,21 @@ test('CSV Bank of America (téléchargement du site) : résumé contrôlé', () 
   assert.ok(r.checks[0].ok);
   assert.equal(norm(r.txs[1].label), 'now internet 888');
 });
+
+test('Safari : ReadableStream rendu parcourable avec « for await » quand le navigateur ne le permet pas', async () => {
+  const { polyfillStreamIteration } = await import('../src/data/pdf');
+  const RS = ReadableStream.prototype as unknown as Record<string | symbol, unknown>;
+  const saved = { it: RS[Symbol.asyncIterator], values: RS.values };
+  delete RS[Symbol.asyncIterator];
+  delete RS.values;
+  try {
+    polyfillStreamIteration();
+    const stream = new ReadableStream({ start(c) { c.enqueue(1); c.enqueue(2); c.close(); } });
+    const got: number[] = [];
+    for await (const v of stream as unknown as AsyncIterable<number>) got.push(v);
+    assert.deepEqual(got, [1, 2]);
+  } finally {
+    Object.defineProperty(ReadableStream.prototype, Symbol.asyncIterator, { value: saved.it, writable: true, configurable: true });
+    Object.defineProperty(ReadableStream.prototype, 'values', { value: saved.values, writable: true, configurable: true });
+  }
+});
