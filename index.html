@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BudgetAnalyze</title>
+  <meta name="description" content="Suivi de budget multi-banques à partir des relevés : catégories, objectifs d'épargne, abonnements.">
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0E16" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <script>window.__t0=Date.now();try{var t=localStorage.getItem('budgetanalyze:theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){}</script>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="BudgetAnalyze">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    /* écran de démarrage : affiché dès le premier rendu, avant le CSS et le JS */
+    html{background:#FFFFFF}
+    html[data-theme="dark"]{background:#0B0E16}
+    body{margin:0}
+    .splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#FFFFFF;transition:opacity .35s ease}
+    html[data-theme="dark"] .splash{background:#0B0E16}
+    .splash.out{opacity:0;pointer-events:none}
+    .splash .mark{width:88px;height:88px;border-radius:24px;background:#2350D8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(35,80,216,.3);animation:sp-pulse 1.5s ease-in-out infinite}
+    html[data-theme="dark"] .splash .mark{background:#3E68EC}
+    .splash svg *{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .splash .coin{animation:sp-candle 1.5s ease-in-out infinite}
+    @keyframes sp-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+    @keyframes sp-candle{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+    @media (prefers-reduced-motion:reduce){.splash .mark,.splash .coin{animation:none}}
+  </style>
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap"></noscript>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="splash" class="splash" role="status" aria-label="BudgetAnalyze"><div class="mark"><svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/><circle class="coin" cx="18" cy="14" r="0.6"/></svg></div></div>
+  <noscript>BudgetAnalyze a besoin de JavaScript.</noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

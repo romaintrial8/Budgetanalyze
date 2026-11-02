@@ -1,0 +1,9 @@
+rules_version = '2';
+// Chaque utilisateur connecté n'accède qu'à ses propres données ; tout le reste est interdit.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

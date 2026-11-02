@@ -1,0 +1,245 @@
+/* ==========================================================================
+   Design tokens – BudgetAnalyze
+   Palette propre à l'application (bleu cocarde + bleu nuit + corail), structure de tokens
+   identique à PEAnalyze et CryptoAnalyze : changer de charte = éditer ce seul fichier.
+   Polices : Montserrat 500/600/700 (titres, montants) + Open Sans 400/600/700.
+   ========================================================================== */
+
+:root {
+  /* ---------- Typographie ---------- */
+  --font-heading: Montserrat, system-ui, ui-sans-serif, sans-serif;
+  --font-body: "Open Sans", system-ui, ui-sans-serif, sans-serif;
+
+  --fs-11: 11px;  --lh-11: 16.5px;
+  --fs-12: 12px;  --lh-12: 18px;
+  --fs-14: 14px;  --lh-14: 21px;
+  --fs-16: 16px;  --lh-16: 24px;
+  --fs-18: 18px;  --lh-18: 27px;
+  --fs-24: 24px;  --lh-24: 36px;
+  --fs-28: 28px;  --lh-28: 42px;
+  --fs-34: 34px;  --lh-34: 48px;
+  --fs-40: 40px;  --lh-40: 56px;
+
+  --fw-400: 400; --fw-500: 500; --fw-600: 600; --fw-700: 700;
+
+  --type-display: var(--fw-700) var(--fs-34)/var(--lh-34) var(--font-heading);
+  --type-h1: var(--fw-700) var(--fs-28)/var(--lh-28) var(--font-heading);
+  --type-h2: var(--fw-700) var(--fs-24)/var(--lh-24) var(--font-heading);
+  --type-h3: var(--fw-700) var(--fs-18)/var(--lh-18) var(--font-heading);
+  --type-amount-l: var(--fw-700) var(--fs-18)/var(--lh-18) var(--font-heading);
+  --type-amount-m: var(--fw-700) var(--fs-16)/var(--lh-16) var(--font-heading);
+  --type-amount-s: var(--fw-700) var(--fs-14)/var(--lh-14) var(--font-heading);
+  --type-button: var(--fw-700) var(--fs-14)/var(--lh-14) var(--font-heading);
+  --type-overline: var(--fw-700) var(--fs-12)/var(--lh-12) var(--font-heading);
+  --type-chip: var(--fw-700) var(--fs-12)/var(--lh-12) var(--font-heading);
+  --type-body: var(--fw-400) var(--fs-14)/var(--lh-14) var(--font-body);
+  --type-body-strong: var(--fw-600) var(--fs-14)/var(--lh-14) var(--font-body);
+  --type-label: var(--fw-600) var(--fs-14)/var(--lh-14) var(--font-body);
+  --type-caption: var(--fw-400) var(--fs-12)/var(--lh-12) var(--font-body);
+  --type-caption-strong: var(--fw-600) var(--fs-12)/var(--lh-12) var(--font-body);
+  --type-legal: var(--fw-400) var(--fs-11)/var(--lh-11) var(--font-body);
+  --type-tab: var(--fw-600) var(--fs-11)/var(--lh-11) var(--font-body);
+  --type-badge: var(--fw-600) var(--fs-11)/var(--lh-11) var(--font-body);
+  --overline-tracking: 0.6px;
+
+  /* ---------- Couleurs de marque ---------- */
+  --brand-primary: #2350D8;          /* bleu cocarde */
+  --brand-primary-hover: #1C43BA;
+  --brand-primary-pressed: #173898;
+  --brand-secondary: #4F74E3;
+  --brand-accent: #0E1B3D;           /* bleu nuit : fond des cartes « hero » */
+  --brand-tertiary: #0E8C9C;
+  --brand-gold: #FF8A65;             /* corail : objectif d'épargne, accent du logotype */
+  --brand-light: #BFD0FF;
+  --primary-fg: var(--brand-primary);
+  --primary-fg-hover: var(--brand-primary-hover);
+
+  /* ---------- Fonds ---------- */
+  --bg-page: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-minimal: #F5F6FA;
+  --bg-brand-minimal: #F0F4FE;
+  --bg-brand-moderate: #DCE5FB;
+  --bg-brand-neutral: #ECEEF4;
+  --bg-blue-minimal: #E6F4F6;
+  --bg-grey-minimal: #EBEDF2;
+  --bg-contrast: #121829;
+  --bg-hover: #2350D814;
+  --bg-pressed: #2350D826;
+  --bg-highlight: #2350D81A;
+  --bg-overlay: #0A102080;
+  --bg-reverse-subtle: #FFFFFF26;
+  --bg-disabled: #EBEDF2;
+
+  /* ---------- Textes ---------- */
+  --text: #121829;
+  --text-strong: #080C18;
+  --text-neutral: #454C63;
+  --text-moderate: #646B84;
+  --text-primary: #2350D8;
+  --text-accent: #0E1B3D;
+  --text-blue: #0E6B78;
+  --text-reverse: #FFFFFF;
+  --text-reverse-muted: #C8D3F5;
+  --text-disabled: #646B84;
+
+  /* ---------- Bordures & séparateurs ---------- */
+  --border: #646B84;
+  --border-minimal: #DADDE7;
+  --border-moderate: #AFB4C6;
+  --border-primary: #2350D8;
+  --divider: #AFB4C6;
+  --divider-minimal: #EBEDF2;
+  --divider-reverse: #FFFFFF33;
+  --focus-indicator: #0E8C9C;
+
+  /* ---------- États fonctionnels ---------- */
+  --success: #15803D;  --success-text: #146C35; --success-bg: #E8F6EC;
+  --critical: #C9302C; --critical-text: #AE1A16; --critical-bg: #FDECEB;
+  --warning: #C25A06;  --warning-text: #A04A00; --warning-bg: #FEF0E3;
+  --info: #2563EB;     --info-text: #1D4FBF;    --info-bg: #EBF1FE;
+  --notification: #E62F44;
+
+  /* ---------- Palette graphiques ----------
+     8 familles de catégories = 8 teintes catégorielles validées (ordre fixe, jamais recyclé), + gris « Autres ». */
+  --cat-1: #2a78d6; --cat-2: #eb6834; --cat-3: #1baf7a; --cat-4: #eda100;
+  --cat-5: #e87ba4; --cat-6: #008300; --cat-7: #6250d6; --cat-8: #e34948;
+  --cat-0: #9a9a96; --cat-neutral: #b5b8c4;
+  --series-income: var(--cat-1);
+  --series-expense: var(--cat-2);
+  --chart-grid: #EBEDF2;
+  --chart-axis: #646B84;
+  --chart-bar: #2350D8;
+  --chart-bar-neg: #E34948;
+  --chart-goal: #121829;
+
+  /* ---------- Rayons ---------- */
+  --radius-2: 2px; --radius-4: 4px; --radius-6: 6px; --radius-8: 8px;
+  --radius-12: 12px; --radius-16: 16px; --radius-20: 20px;
+  --radius-24: 24px; --radius-32: 32px; --radius-40: 40px;
+  --radius-full: 999px;
+
+  /* ---------- Ombres ---------- */
+  --shadow-xs: 0 1px 3px 0 #0E1B3D26;
+  --shadow-s: 0 4px 16px 0 #0E1B3D14;
+  --shadow-m: 0 10px 60px 0 #0E1B3D26;
+  --shadow-l: 0 20px 80px 0 #0E1B3D4D;
+  --shadow-sticky: 0 -2px 12px 0 #0E1B3D1A;
+  --shadow-fab: 0 6px 20px 0 #2350D859;
+
+  /* ---------- Espacements (grille 4px) ---------- */
+  --space-2: 2px; --space-4: 4px; --space-6: 6px; --space-8: 8px; --space-10: 10px; --space-12: 12px;
+  --space-16: 16px; --space-20: 20px; --space-24: 24px; --space-32: 32px;
+  --space-40: 40px; --space-48: 48px; --space-64: 64px;
+
+  /* ---------- Mise en page mobile ---------- */
+  --screen-width: 390px;
+  --screen-height: 844px;
+  --screen-margin: 16px;
+  --safe-top: 47px;
+  --safe-bottom: 34px;
+  --header-height: 64px;
+  --tabbar-height: 64px;
+  --touch-min: 44px;
+  --fab-size: 56px;
+
+  /* ---------- Composants ---------- */
+  --button-height: 40px;
+  --button-padding: 8px 24px;
+  --button-radius: 999px;
+  --chip-height: 36px;
+  --chip-padding: 8px 16px;
+  --tab-indicator-height: 3px;
+  --input-height: 48px;
+  --input-radius: 4px;
+  --input-border: 1px solid #646B84;
+  --input-border-focus: 2px solid #0E8C9C;
+  --input-border-error: 2px solid #C9302C;
+  --toast-bg: #15803D;
+  --tooltip-bg: #0E1B3D;
+  --sparkline-height: 40px;
+  --donut-ring: 24px;
+  --allocation-bar-height: 8px;
+}
+
+/* ==========================================================================
+   Thème sombre : mêmes rôles, valeurs adaptées (contraste ≥ 4,5:1).
+   ========================================================================== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --brand-primary: #3E68EC;
+  --brand-primary-hover: #5A7FF0;
+  --brand-primary-pressed: #2F57D6;
+  --brand-secondary: #7A97F2;
+  --brand-accent: #17254D;
+  --brand-tertiary: #22B3C4;
+  --brand-gold: #FF9B7A;
+  --brand-light: #BFD0FF;
+  --primary-fg: #9DB5FF;
+  --primary-fg-hover: #BCCDFF;
+
+  --bg-page: #0B0E16;
+  --bg-surface: #151923;
+  --bg-surface-minimal: #1B202C;
+  --bg-brand-minimal: #16203A;
+  --bg-brand-moderate: #1F2F5C;
+  --bg-brand-neutral: #1D222E;
+  --bg-blue-minimal: #102E33;
+  --bg-grey-minimal: #262C3A;
+  --bg-contrast: #E6E9F2;
+  --bg-hover: #9DB5FF1F;
+  --bg-pressed: #9DB5FF33;
+  --bg-highlight: #9DB5FF1F;
+  --bg-overlay: #000000A6;
+  --bg-reverse-subtle: #FFFFFF1F;
+  --bg-disabled: #262C3A;
+
+  --text: #E6E9F2;
+  --text-strong: #FFFFFF;
+  --text-neutral: #B5BBCC;
+  --text-moderate: #9198AD;
+  --text-primary: #9DB5FF;
+  --text-accent: #BFD0FF;
+  --text-blue: #6CCAD6;
+  --text-reverse: #FFFFFF;
+  --text-reverse-muted: #C3CEF2;
+  --text-disabled: #6C7387;
+
+  --border: #9198AD;
+  --border-minimal: #2C3240;
+  --border-moderate: #475063;
+  --border-primary: #9DB5FF;
+  --divider: #475063;
+  --divider-minimal: #252B37;
+  --divider-reverse: #FFFFFF2E;
+  --focus-indicator: #3CC4D8;
+
+  --success: #1F9D50;  --success-text: #63D08D; --success-bg: #12301F;
+  --critical: #C93A33; --critical-text: #FF8F86; --critical-bg: #3A1B1B;
+  --warning: #B8580F;  --warning-text: #F5A766; --warning-bg: #3A2516;
+  --info: #3B82F6;     --info-text: #8DB5FF;    --info-bg: #15213D;
+  --notification: #F0475A;
+
+  --cat-1: #3987e5; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
+  --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9; --cat-8: #e66767;
+  --cat-0: #6e6e6a; --cat-neutral: #4a5163;
+  --chart-grid: #252B37;
+  --chart-axis: #9198AD;
+  --chart-bar: #5A7FF0;
+  --chart-bar-neg: #E66767;
+  --chart-goal: #E6E9F2;
+
+  --shadow-xs: 0 1px 3px 0 #00000066;
+  --shadow-s: 0 4px 16px 0 #00000059;
+  --shadow-m: 0 10px 60px 0 #00000080;
+  --shadow-l: 0 20px 80px 0 #00000099;
+  --shadow-sticky: 0 -2px 12px 0 #00000066;
+  --shadow-fab: 0 6px 20px 0 #00000080;
+
+  --input-border: 1px solid #9198AD;
+  --input-border-focus: 2px solid #3CC4D8;
+  --input-border-error: 2px solid #FF8F86;
+  --toast-bg: #17803F;
+  --tooltip-bg: #1F2F5C;
+}

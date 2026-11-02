@@ -1,0 +1,27 @@
+{
+  "name": "budgetanalyze",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BudgetAnalyze – suivi de budget multi-banques (Revolut, Bank of America, Crédit Agricole) à partir des relevés",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs --serve",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "pdfjs-dist": "5.7.284",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "esbuild": "0.28.2",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3"
+  }
+}
